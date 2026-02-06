@@ -1,0 +1,48 @@
+@import "tailwindcss";
+  html{
+    scroll-behavior: smooth;
+  }
+  @theme{
+    --color-primary: #CCCCFE;
+    --color-primary-dim: #a5a5d9;
+    --color-ocean-dark: #12152A;
+    --color-ocean-card: #1a1e36;
+    --color-ocean-light: #232946;
+    --color-text-light: #90a1b9;
+
+    --font-sans: "Inter", sans-serif;
+    --font-serif: "Playfair Display", serif;
+        
+    --border-radius: 0.25rem;
+    --border-radius-lg: 0.5rem;
+    --border-radius-xl: 0.75rem;
+    --border-radius-2xl: 1rem;
+    --border-radius-full: 9999px;
+
+    @keyframes morph {
+        0% {
+          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        50% {
+          border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+        }
+        100% {
+          border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+      }
+  }
+  .ocean-gradient {
+    background: linear-gradient(180deg, #12152a 0%, #0e1121 100%);
+  }
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(to right, #FFFFFF, #E6E6FE, #CCCCFE, #9B9BFD);
+  }
+  
+  .organic-border {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: morph 8s ease-in-out infinite;
+  }
+  

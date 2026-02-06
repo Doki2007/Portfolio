@@ -1,0 +1,140 @@
+<header
+  class="fixed top-0 z-50 w-full border-b border-primary/10 bg-ocean-dark/90 backdrop-blur-md supports-backdrop-filter:bg-ocean-dark/60"
+>
+  <div class="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div
+        class="text-primary p-1 bg-primary/10 rounded-full shadow-[0_0_12px_rgba(204,204,254,0.3)]"
+      >
+        <div
+          class="text-primary p-1 bg-primary/10 rounded-full shadow-[0_0_12px_rgba(204,204,254,0.3)] flex items-center justify-center"
+        >
+          <span
+            class="material-symbols-outlined text-2xl drop-shadow-[0_0_5px_rgba(204,204,254,0.5)] leading-none"
+            >code</span
+          >
+        </div>
+      </div>
+      <h2 class="text-white text-lg font-bold tracking-wide">JAMIR.DEV</h2>
+    </div>
+    <nav
+      class="hidden lg:flex items-center gap-8 bg-white/5 px-6 py-2 rounded-full border border-white/5 backdrop-blur-sm"
+    >
+      <a
+        href="#home"
+        class="nav-link group text-slate-300 hover:text-primary text-sm font-medium transition-all relative px-3 py-1"
+      >
+        Home
+        <span
+          class="nav-line absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-2/3"
+        ></span>
+      </a>
+
+      <a
+        class="nav-link group text-slate-300 hover:text-primary text-sm font-medium transition-all relative px-3 py-1"
+        href="#about"
+        >About
+        <span
+          class="nav-line absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-2/3"
+        ></span>
+      </a>
+      <a
+        class="nav-link group text-slate-300 hover:text-primary text-sm font-medium transition-all relative px-3 py-1"
+        href="#projects"
+        >Projects <span
+          class="nav-line absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-2/3"
+        ></span>
+      </a>
+      <a
+        class="nav-link group text-slate-300 hover:text-primary text-sm font-medium transition-all relative px-3 py-1"
+        href="#contact"
+        >Contact
+        <span
+          class="nav-line absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary transition-all duration-500 group-hover:w-2/3"
+        ></span>
+      </a>
+    </nav>
+    <button
+      class="hidden lg:flex lg:justify-center lg:items-center gap-2 bg-primary hover:bg-primary-dim text-ocean-dark px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-[0_0_20px_rgba(204,204,254,0.4)] hover:shadow-[0_0_30px_rgba(204,204,254,0.6)] hover:-translate-y-0.5 active:translate-y-0 hover:text-white"
+    >
+      <svg
+        class="size-4 animate-bounce transition-transform duration-500 ease-in-out mt-2 hover:text-white"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 111.414-1.414L9 9.586V3a1 1 0 112 0v6.586l1.293-1.293a1 1 0 111.414 1.414l-3 3A1 1 0 0110 12z"
+        ></path>
+      </svg>
+      Download CV
+    </button>
+    <button class="lg:hidden text-white">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+  </div>
+</header>
+<script lang="ts">
+  document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    // Función auxiliar para activar un link y desactivar los demás
+    const setActiveLink = (targetLink) => {
+      // 1. Limpiar todos
+      navLinks.forEach((link) => {
+        link.classList.remove("text-primary");
+        link.classList.add("text-slate-300");
+
+        const line = link.querySelector(".nav-line");
+        if (line) {
+          line.classList.remove("w-2/3");
+          line.classList.add("w-0");
+        }
+      });
+
+      // 2. Activar el objetivo
+      if (targetLink) {
+        targetLink.classList.remove("text-slate-300");
+        targetLink.classList.add("text-primary");
+
+        const activeLine = targetLink.querySelector(".nav-line");
+        if (activeLine) {
+          activeLine.classList.remove("w-0");
+          activeLine.classList.add("w-2/3");
+        }
+      }
+    };
+
+    // --- LÓGICA 1: AL HACER CLICK ---
+    navLinks.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        // Opcional: Si quieres un scroll suave por JS, preventDefault() aquí.
+        // Pero como es Astro, dejamos que el CSS scroll-behavior haga el trabajo.
+        setActiveLink(link);
+      });
+    });
+
+    // --- LÓGICA 2: AL SCROLLEAR (Observer) ---
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.3, // 30% visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+
+          // Solo actualizamos si el observer detecta una sección clara
+          if (activeLink) {
+            setActiveLink(activeLink);
+          }
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+  });
+</script>

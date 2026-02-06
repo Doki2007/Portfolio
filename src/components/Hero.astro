@@ -1,0 +1,110 @@
+---
+import HeroImage from "../assets/images/hero-image.webp";
+---
+
+<section
+  class="relative min-h-screen bg-ocean-dark flex items-center pt-24 pb-12 overflow-hidden ocean-gradient"
+  id="home"
+>
+  <div
+    class="absolute inset-0 opacity-10 pointer-events-none"
+    style="background-image: radial-gradient(#CCCCFE 1px, transparent 1px); background-size: 50px 50px;"
+  >
+  </div>
+  <div
+    class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[128px] pointer-events-none"
+  >
+  </div>
+  <div
+    class="relative z-10 mx-auto max-w-7xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+  >
+    <div class="text-center lg:text-left order-2 lg:order-1">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(204,204,254,0.1)]"
+      >
+        <span
+          class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#CCCCFE]"
+        ></span>
+        Available for work
+      </div>
+      <h1
+        class="font-display font-black text-white text-4xl md:text-5xl lg:text-6xl mb-6 leading-[1.1] tracking-tight drop-shadow-[0_0_15px_rgba(204,204,254,0.2)]"
+      >
+        Junior Frontend Developer
+        <span class="text-gradient"
+          >/ <br class="hidden lg:block" />Crafting Intentional Digital
+          Experiences</span
+        >
+      </h1>
+      <p
+        class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
+      >
+        I craft responsive, high-performance web interfaces with deep attention
+        to detail. Blending technical precision with oceanic fluidity using
+        Astro and Tailwind.
+      </p>
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+      >
+        <a
+          class="w-full sm:w-auto bg-primary hover:bg-white text-ocean-dark px-8 py-4 rounded-full font-bold text-base transition-all shadow-[0_0_25px_rgba(204,204,254,0.4)] hover:shadow-[0_0_35px_rgba(204,204,254,0.6)] flex items-center justify-center gap-2"
+          href="#projects"
+        >
+          View Projects <svg
+            class="size-5 animate-bounce transition-transform duration-500 ease-in-out mt-2 hover:text-white"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 111.414-1.414L9 9.586V3a1 1 0 112 0v6.586l1.293-1.293a1 1 0 111.414 1.414l-3 3A1 1 0 0110 12z"
+            ></path>
+          </svg>
+        </a>
+        <a
+          class="w-full sm:w-auto border border-white/20 hover:bg-white/5 hover:border-primary/50 hover:shadow-[0_0_15px_rgba(204,204,254,0.1)] text-white px-8 py-4 rounded-full font-bold text-base transition-all flex items-center justify-center"
+          href="#contact"
+        >
+          Contact Me
+        </a>
+      </div>
+    </div>
+
+    <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
+      <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-112.5 lg:h-112.5">
+        <div
+          class="absolute inset-0 rounded-full border border-primary/20 scale-110 animate-[spin_10s_linear_infinite] shadow-[0_0_30px_rgba(204,204,254,0.1)]"
+        >
+        </div>
+        <div
+          class="absolute inset-0 rounded-full border border-dashed border-primary/30 scale-125 animate-[spin_20s_linear_infinite_reverse]"
+        >
+        </div>
+        <div
+          class="relative w-full h-full rounded-full border-4 border-primary/50 shadow-[0_0_50px_rgba(204,204,254,0.25)] overflow-hidden bg-ocean-card"
+        >
+          <img
+            alt="Jamir Garro Portrait"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            src={HeroImage.src}
+          />
+        </div>
+        <div
+          class="absolute -bottom-4 -left-4 md:left-0 bg-ocean-card border border-primary/40 p-4 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-3 animate-bounce backdrop-blur-md transition-all duration-500 ease-in"
+        >
+          <div
+            class="bg-primary/20 p-2 rounded-lg text-primary shadow-2xs flex items-center justify-center"
+          >
+            <span
+              class="material-symbols-outlined drop-shadow-[0_0_5px_rgba(204,204,254,0.5)] leading-none"
+              >terminal</span
+            >
+          </div>
+          <div>
+            <p class="text-xs text-slate-400 uppercase font-bold">Status</p>
+            <p class="text-white font-bold">Freelance Developer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
