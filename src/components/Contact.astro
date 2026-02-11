@@ -8,12 +8,13 @@
   </div>
   <div class="mx-auto max-w-5xl px-6 relative z-10">
     <div class="text-center mb-16">
-      <h2 class="font-serif text-white text-4xl font-bold mb-4">
+      <h2 class="font-serif text-primary text-4xl font-bold mb-4">
         Start a Conversation
       </h2>
       <p class="text-slate-400 max-w-lg mx-auto">
-        Currently open for new opportunities. Whether you have a question or
-        just want to say hi, I'll try my best to get back to you!
+        I'm always open to new challenges and opportunities to grow. Whether you
+        have a question, a project in mind, or just want to connect, feel free
+        to reach out—I'd love to hear from you.
       </p>
     </div>
     <div class="bg-ocean-card p-1 rounded-3xl border border-white/5 shadow-2xl">
@@ -31,7 +32,7 @@
             >
             <input
               class="w-full bg-ocean-card border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-white/60 transition-all shadow-inner"
-              placeholder="John Doe"
+              placeholder="Jamir Garro"
               type="text"
               id="name"
               name="name"
@@ -45,7 +46,7 @@
             >
             <input
               class="w-full bg-ocean-card border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-white/60 transition-all shadow-inner"
-              placeholder="john@example.com"
+              placeholder="jamirgarro@example.com"
               type="email"
               name="email"
               required
@@ -59,7 +60,7 @@
             >
             <textarea
               class="w-full bg-ocean-card border-white/5 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-white/60 transition-all shadow-inner resize-none"
-              placeholder="Tell me about your project..."
+              placeholder="Hi Jamir, I'd love to discuss a potential collaboration or project..."
               rows="6"
               id="message"
               name="message"
@@ -68,18 +69,23 @@
           <div class="md:col-span-2 pt-4">
             <button
               id="my-form-button"
-              class="w-full bg-primary hover:bg-white text-ocean-dark font-bold py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(204,204,254,0.4)] hover:shadow-[0_0_30px_rgba(204,204,254,0.6)] flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+              class="w-full bg-primary hover:bg-primary-dim text-ocean-dark hover:text-white font-bold py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(204,204,254,0.4)] hover:shadow-[0_0_30px_rgba(204,204,254,0.6)] flex items-center justify-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               type="submit"
             >
               <span class="material-symbols-outlined">send</span> Send Message
             </button>
-            <p id="my-form-status"></p>
+            <p
+              id="my-form-status"
+              class="text-center text-primary opacity-0 translate-y-0 transition-all duration-500 pointer-events-none ease-in-out mt-2"
+            >
+              text
+            </p>
           </div>
         </form>
       </div>
     </div>
     <div class="mt-20 flex flex-col items-center">
-      <p class="text-slate-500 mb-8 text-sm font-medium">Connect on Socials</p>
+      <p class="text-white/80 mb-8 text-sm font-medium">Connect on Socials</p>
       <div class="flex items-center gap-10">
         <a
           class="text-primary hover:text-ocean-dark transition-all hover:scale-110 hover:drop-shadow-[0_0_6px_rgba(204,204,254,0.6)] border border-primary hover:bg-primary p-2.5 rounded-full"
@@ -116,12 +122,12 @@
   </div>
 </section>
 <script lang="js">
-  var form = document.getElementById("my-form");
+  const form = document.getElementById("my-form");
 
   async function handleSubmit(event) {
     event.preventDefault();
-    var status = document.getElementById("my-form-status");
-    var data = new FormData(event.target);
+    const status = document.getElementById("my-form-status");
+    const data = new FormData(event.target);
     fetch(event.target.action, {
       method: form.method,
       body: data,
@@ -131,7 +137,11 @@
     })
       .then((response) => {
         if (response.ok) {
+          status.classList.add("opacity-100", "-translate-y-2");
           status.innerHTML = "Thanks for your submission!";
+          setTimeout(() => {
+            status.innerHTML = "";
+          }, 2000);
           form.reset();
         } else {
           response.json().then((data) => {
