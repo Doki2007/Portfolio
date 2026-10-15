@@ -3,12 +3,12 @@ import HeroImage from "../assets/images/hero-image.webp";
 ---
 
 <section
-  class="relative min-h-screen bg-ocean-dark flex items-center pt-24 pb-12 overflow-hidden ocean-gradient"
+  class="relative min-h-screen bg-ocean-dark flex items-center pt-38 pb-20 lg:pt-24 lg:pb-12 overflow-hidden ocean-gradient"
   id="home"
 >
   <div
-    class="absolute inset-0 opacity-10 pointer-events-none"
-    style="background-image: radial-gradient(#CCCCFE 1px, transparent 1px); background-size: 50px 50px;"
+    class="absolute inset-0 opacity-15 pointer-events-none"
+    style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 50px 50px;"
   >
   </div>
   <div
@@ -20,7 +20,7 @@ import HeroImage from "../assets/images/hero-image.webp";
   >
     <div class="text-center lg:text-left order-2 lg:order-1">
       <div
-        class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(204,204,254,0.1)]"
+        class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(204,204,254,0.1)] hero-left"
       >
         <span
           class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#CCCCFE]"
@@ -28,22 +28,21 @@ import HeroImage from "../assets/images/hero-image.webp";
         Available for work
       </div>
       <h1
-        class="font-display font-black text-white text-4xl md:text-5xl lg:text-6xl mb-6 leading-[1.1] tracking-tight drop-shadow-[0_0_15px_rgba(204,204,254,0.2)]"
+        class="hero-left font-display font-black text-white text-4xl md:text-5xl lg:text-6xl mb-6 leading-[1.1] tracking-tight drop-shadow-[0_0_15px_rgba(204,204,254,0.2)] text-gradient"
       >
-        Junior Frontend Developer
-        <span class="text-gradient"
-          >/ <br class="hidden lg:block" />Jamir Garro</span
-        >
+        Jamir Garro Software Engineer
       </h1>
+      <!-- <h1 class="hero-left text-5xl font-bold  text-gradient">Jamir Garro</h1>
+      <h2 class="hero-left text-2xl text-zinc-400 mt-2">Software Engineer</h2> -->
       <p
-        class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
+        class="hero-left text-slate-300 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
       >
         Specializing in creating responsive, high-performance interfaces with
         React, Astro, and Tailwind CSS. Focused on clean code and fluid user
         experiences.
       </p>
       <div
-        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 hero-left"
       >
         <a
           class="group w-full sm:w-auto bg-primary hover:bg-[#E0E0FF] text-ocean-dark px-8 py-4 rounded-full font-bold text-base transition-all duration-300 shadow-[0_0_20px_rgba(204,204,254,0.3)] hover:shadow-[0_0_40px_rgba(204,204,254,0.5)] hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2"
@@ -66,7 +65,9 @@ import HeroImage from "../assets/images/hero-image.webp";
     </div>
 
     <div class="relative order-1 lg:order-2 flex justify-center lg:justify-end">
-      <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-112.5 lg:h-112.5">
+      <div
+        class="relative w-64 h-64 md:w-[300px] md:h-[300px] lg:w-112.5 lg:h-112.5 hero-right"
+      >
         <div
           class="absolute inset-0 rounded-full border border-primary/20 scale-110 animate-[spin_10s_linear_infinite] shadow-[0_0_30px_rgba(204,204,254,0.1)]"
         >
@@ -80,7 +81,7 @@ import HeroImage from "../assets/images/hero-image.webp";
         >
           <img
             alt="Jamir Garro Portrait"
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 lazy"
             src={HeroImage.src}
           />
         </div>
@@ -104,3 +105,32 @@ import HeroImage from "../assets/images/hero-image.webp";
     </div>
   </div>
 </section>
+<style>
+  .hero-left,
+  .hero-right {
+    visibility: hidden;
+  }
+</style>
+<script>
+  // Astro empaqueta este script automáticamente para el cliente
+  import gsap from "gsap";
+  const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+  // Usamos el efecto Stagger en cascada
+  tl.from(".hero-left", {
+    y: 40,
+    autoAlpha: 0,
+    duration: 1,
+    stagger: 0.15, // Los textos y botones entran rápido en cascada
+  })
+    // Animamos la imagen de la derecha encadenada a la línea de tiempo
+    .from(
+      ".hero-right",
+      {
+        x: 30, // Entra ligeramente desde la derecha
+        scale: 0.95, // Hace un pequeño efecto de zoom
+        autoAlpha: 0,
+        duration: 1.2,
+      },
+      "-=0.9",
+    ); // TRUCO SENIOR: El "-=0.7" adelanta la animación 0.7 segundos para que arranque MIENTRAS los textos aún están entrando.
+</script>
