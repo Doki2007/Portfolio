@@ -16,3 +16,36 @@ import Projects from "../components/Projects.astro";
   <Contact />
   <Footer />
 </Layout>
+
+<style is:global>
+  /* Ocultamos las secciones globalmente para evitar el parpadeo inicial (FOUC) */
+  .scroll-reveal {
+    visibility: hidden;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+
+  // 1. Registramos el plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 2. Buscamos todas las secciones con la clase
+  const sections = document.querySelectorAll(".scroll-reveal");
+
+  // 3. Iteramos sobre cada una para darle su propio disparador
+  sections.forEach((section) => {
+    gsap.from(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%", // Arranca cuando la parte superior de la sección cruza el 80% de la altura de la pantalla
+        toggleActions: "play none none none", // Solo se reproduce una vez al bajar
+      },
+      y: 50, // Entra desde abajo
+      autoAlpha: 0, // Maneja opacity y visibility automáticamente
+      duration: 1,
+      ease: "power3.out",
+    });
+  });
+</script>
